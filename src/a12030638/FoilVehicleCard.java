@@ -8,10 +8,10 @@ public class FoilVehicleCard extends VehicleCard {
 
     public FoilVehicleCard(final String name, final Map<Category, Double> categories, final Set<Category> specials) {
         super(name, categories);
-        if(specials.size() > 3 || specials.isEmpty() || specials == null) {
+        if(specials == null || specials.size() > 3 || specials.isEmpty()) {
             throw new IllegalArgumentException("Specials invalid!");
         }
-        this.specials = specials;
+        this.specials = new HashSet<>(specials);
     }
 
     public Set<Category> getSpecials() {

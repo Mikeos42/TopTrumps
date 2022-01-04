@@ -11,7 +11,7 @@ public class Player implements Comparable<Player> {
    private Queue<VehicleCard> deck = new ArrayDeque<>();
 
    public Player(final String name) {
-       if(name.isEmpty() || name == null) {
+       if(name == null || name.isEmpty()) {
            throw new IllegalArgumentException("Name is invalid!");
        }
        this.name = name;

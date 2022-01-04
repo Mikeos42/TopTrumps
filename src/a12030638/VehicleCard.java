@@ -41,7 +41,7 @@ public class VehicleCard implements Comparable<VehicleCard> {
     private Map<Category, Double> categories;
 
     public VehicleCard(final String name, final Map<Category, Double> categories) {
-        if(name.isEmpty() || name == null) {
+        if(name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Name invalid!");
         }
         if(categories == null) {
