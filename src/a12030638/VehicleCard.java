@@ -8,8 +8,14 @@ public class VehicleCard implements Comparable<VehicleCard> {
     public enum Category {
         ECONOMY_MPG("Miles/Galon"),
         DISPLACEMENT_CCM("Hubraum[cc]"),
-        WEIGHT_LBS("Gewicht[lbs]"),
-        ACCELERATION("Beschleunigung"),
+        WEIGHT_LBS("Gewicht[lbs]"){
+            @Override
+            public boolean isInverted() { return true; }
+        },
+        ACCELERATION("Beschleunigung") {
+            @Override
+            public boolean isInverted() { return true; }
+        },
         CYLINDERS_CNT("Zylinder"),
         YEAR("Baujahr[19xx]"),
         POWER_HP("Leistung[hp]");
@@ -24,7 +30,7 @@ public class VehicleCard implements Comparable<VehicleCard> {
         }
 
         public boolean isInverted() {
-            return this == WEIGHT_LBS || this == ACCELERATION;
+            return false;
         }
 
         public int bonus(final Double value) {
