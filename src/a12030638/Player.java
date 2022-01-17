@@ -1,21 +1,26 @@
 package a12030638;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Player implements Comparable<Player> {
 	private String name;
+	private Strategy strategy;
 	private Queue<VehicleCard> deck = new ArrayDeque<>();
 
 	public Player(final String name) {
 		if (name == null || name.isEmpty())
 			throw new IllegalArgumentException("Player: name invalid");
 		this.name = name;
+		this.strategy = new RndStrategy();
+	}
+	public Player(final String name, final Strategy strategy) {
+		if (name == null || name.isEmpty())
+			throw new IllegalArgumentException("Player: name invalid");
+		if (strategy == null)
+			throw new IllegalArgumentException("Player: strategy invalid");
+		this.name = name;
+		this.strategy = strategy;
 	}
 
 	public String getName() {
@@ -102,6 +107,18 @@ public class Player implements Comparable<Player> {
 
 			return winner > 0;
 		}
+	}
+
+	public VehicleCard.Category chooseNextCategory() {
+		return strategy.chooseCategory(peekNextCard());
+	}
+
+	public Strategy getStrategy() {
+		return strategy;
+	}
+
+	public void setStrategy(Strategy strategy) {
+		this.strategy = strategy;
 	}
 
 	public static Comparator<Player> compareByScore() {

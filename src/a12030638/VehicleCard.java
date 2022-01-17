@@ -103,4 +103,8 @@ public class VehicleCard implements Comparable<VehicleCard> {
 		return "- " + getName() + "(" + totalBonus() + ") -> {" + Arrays.stream(Category.values())
 				.map(x -> x.toString() + "=" + getCategories().get(x)).collect(Collectors.joining(", ")) + "}";
 	}
+
+	public int compareByCategory(VehicleCard other, Category category) {
+		return categories.get(category).compareTo(other.categories.get(category));
+	}
 }

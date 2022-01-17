@@ -1,9 +1,6 @@
 package a12030638;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class FoilVehicleCard extends VehicleCard {
@@ -13,7 +10,7 @@ public class FoilVehicleCard extends VehicleCard {
 		super(name, categories);
 		if (specials == null || specials.isEmpty() || specials.size() > 3)
 			throw new IllegalArgumentException("FoilVehicleCard: specials null, empty or < 3");
-		if (specials.contains(null)) {
+		if (specials.stream().anyMatch(Objects::isNull)) {
 			throw new IllegalArgumentException("FoilVehicleCard: specials has null value");
 		}
 		this.specials = new HashSet<>(specials);
@@ -29,6 +26,7 @@ public class FoilVehicleCard extends VehicleCard {
 				.mapToDouble(x -> Math.abs(x.getValue())).sum();
 	}
 
+	@Override
 	public String toString() {
 		return "- " + getName() + "(" + totalBonus() + ") -> {" + Arrays.stream(Category.values()).map(x -> {
 			if (getSpecials().contains(x))
