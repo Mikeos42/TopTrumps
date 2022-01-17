@@ -127,6 +127,15 @@ public class Game {
         List<Object[]> rows = new ArrayList<>();
 
         // create the rows of the table...
+        rows.add(new Object[]{"Player", "Strategy", "success", "failures", "success rate"});
+        for(var p : players) {
+            rows.add(new Object[]{p.getName(),
+                    p.getStrategy().getClass().getSimpleName(),
+                    playerStats.get(p).success,
+                    playerStats.get(p).failure,
+                    (double) playerStats.get(p).success / (playerStats.get(p).success + playerStats.get(p).failure)
+            });
+        }
 
 
         SimpleTablePrinter.print(rows, outputStream);

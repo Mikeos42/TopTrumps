@@ -17,11 +17,15 @@ public class ExtensionMain {
         final List<VehicleCard> cards = allLines.stream().map(SimpleCsvParser::parseLine).filter(Objects::nonNull).collect(Collectors.toList());
         Game g = new Game();
         cards.forEach(g::addCard);
-        g.addPlayer(new Player("Miki"));
-        g.addPlayer(new Player("Nik"));
+        Strategy rnd = new RndStrategy();
+        Strategy avg = new AvgStrategy();
+        g.addPlayer(new Player("Miki", avg));
         g.addPlayer(new Player("Jessica"));
-        g.play();
+        g.addPlayer(new Player("Nik"));
+        for (int i = 0; i < 10; i++) {
+            g.play();
+        }
 
-        g.writeStatistics(SimpleTablePrinter.);
+        g.writeStatistics(System.out);
     }
 }
