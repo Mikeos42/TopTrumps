@@ -19,8 +19,9 @@ public class ExtensionMain {
         cards.forEach(g::addCard);
         Strategy rnd = new RndStrategy();
         Strategy avg = new AvgStrategy();
-        g.addPlayer(new Player("Miki"));
-        g.addPlayer(new Player("Nik"));
+        g.addPlayer(new Player("Miki", avg));
+        g.addPlayer(new Player("Nik", avg));
+        g.addPlayer(new Player("Jessica", avg));
         for (int i = 0; i < 100; i++) {
             g.play();
         }

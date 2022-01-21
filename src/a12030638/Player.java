@@ -88,14 +88,17 @@ public class Player implements Comparable<Player> {
 			if (getDeck().isEmpty() || p.getDeck().isEmpty()) {
 				addCards(this_temp);
 				p.addCards(p_temp);
+				return false;
 			}
 			int winner = this.peekNextCard().compareTo(p.peekNextCard());
 
 			this_temp.add(playNextCard());
 			p_temp.add(p.playNextCard());
 
-			table.addAll(this_temp);
-			table.addAll(p_temp);
+			if(winner != 0) {
+				table.addAll(this_temp);
+				table.addAll(p_temp);
+			}
 
 			// logic
 			if (winner < 0)

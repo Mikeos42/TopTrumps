@@ -73,9 +73,11 @@ public class VehicleCard implements Comparable<VehicleCard> {
 
 	public static Map<Category, Double> newMap(double economy, double cylinders, double displacement, double power,
 			double weight, double acceleration, double year) {
-		return Map.of(Category.ECONOMY_MPG, economy, Category.CYLINDERS_CNT, cylinders, Category.DISPLACEMENT_CCM,
+		return new HashMap<>(
+				Map.of(Category.ECONOMY_MPG, economy, Category.CYLINDERS_CNT, cylinders, Category.DISPLACEMENT_CCM,
 				displacement, Category.POWER_HP, power, Category.WEIGHT_LBS, weight, Category.ACCELERATION,
-				acceleration, Category.YEAR, year);
+				acceleration, Category.YEAR, year)
+		);
 	}
 
 	@Override
