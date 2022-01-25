@@ -107,6 +107,12 @@ public class VehicleCard implements Comparable<VehicleCard> {
 	}
 
 	public int compareByCategory(VehicleCard other, Category category) {
-		return categories.get(category).compareTo(other.categories.get(category));
+//		return categories.get(category).compareTo(other.categories.get(category));
+		var ret = Double.compare(
+				category.bonus(getCategories().get(category)),
+				category.bonus(other.getCategories().get(category))
+		);
+		//System.out.println("ret = " + ret);
+		return ret;
 	}
 }

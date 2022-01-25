@@ -1,4 +1,4 @@
-package a12030638;
+package a11920352;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -22,8 +22,8 @@ public class ExtensionMain {
         cards.forEach(f::addCard);
 
         Strategy rnd = new RndStrategy();
-        Strategy avg = new AvgStrategy(cards.stream().limit(1).collect(Collectors.toList()));
-        Player Miki = new Player("Miki", avg);
+        Strategy avg = new AvgStrategy();
+        Player Miki = new Player("Miki");
         Player Jessica = new Player("Jessica");
         Player Nik = new Player("Nik");
 
@@ -39,13 +39,5 @@ public class ExtensionMain {
 
         g.writeStatistics(System.out);
         f.writeStatistics(System.out);
-
-        /*
-        Fragen:
-            1. Meine Annahme Success Rate von rnd 50/50 - > Implementierung: 46/54 also fast 50/50
-            2. AvgStrategy verändert das ergebnis komplett - > Success Rate steigt auf ~80%
-            3. 1?
-         */
-
     }
 }
